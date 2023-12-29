@@ -27,11 +27,7 @@ public class checkoutImplementation implements checkoutCustomer{
         purchase.getCart().setTrackingNumber(TrackingNumber);
         purchase.getCart().setStatus(statusType.ordered);
 
-        vacation vacation = purchase.getCartItems()
-                .stream()
-                .findFirst()
-                .map(cartItem::getVacation)
-                .orElseThrow(() -> new IllegalArgumentException("Vacation cannont be empty."));
+
         vacationRepository.save(vacation);
         cart savedCart = cartRepository.save(purchase.getCart());
 
