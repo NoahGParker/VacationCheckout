@@ -1,6 +1,6 @@
-package edu.wgu.d288_backend.config;
+package com.example.demo.config;
 
-import com.example.demo.entities;
+import com.example.demo.entities.*;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
@@ -34,11 +34,11 @@ public class RestDataConfig implements RepositoryRestConfigurer {
      */
     @Override
     public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config, CorsRegistry cors) {
-        config.exposeIdsFor(Country.class);
-        config.exposeIdsFor(Customer.class);
-        config.exposeIdsFor(Division.class);
-        config.exposeIdsFor(Excursion.class);
-        config.exposeIdsFor(Vacation.class);
+        config.exposeIdsFor(country.class);
+        config.exposeIdsFor(customer.class);
+        config.exposeIdsFor(division.class);
+        config.exposeIdsFor(excursion.class);
+        config.exposeIdsFor(vacation.class);
         config.setDefaultPageSize(Integer.MAX_VALUE);
         config.setMaxPageSize(Integer.MAX_VALUE);
 
