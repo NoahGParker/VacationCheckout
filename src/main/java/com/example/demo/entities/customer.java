@@ -62,6 +62,6 @@ public customer(String firstName,String lastName,String address,String postal_co
 
 }
 public  customer(){
-    
+
 }
 }
