@@ -24,7 +24,7 @@ public class checkoutImplementation implements Checkout {
     @Transactional
     public PurchaseResponse placeOrder(Purchase purchase){
         String orderTrackingNumber = generateTrackingNumber();
-        purchase.getCart().setOrderTrackingNumber(generateTrackingNumber());
+        purchase.getCart().setOrderTrackingNumber(orderTrackingNumber);
         purchase.getCart().setStatus(StatusType.ordered);
 
         Vacation vacation = purchase.getCartItems()
