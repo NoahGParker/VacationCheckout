@@ -1,6 +1,5 @@
 package com.example.demo.entities;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -12,14 +11,14 @@ import java.util.*;
 @Entity
 @Table(name="excursions")
 @Data
-public class excursion {
+public class Excursion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="excursion_id")
     private Long id;
 
     @Column(name = "excursion_title")
-    private String excursion_Title;
+    private String excursion_title;
 
     @Column(name = "excursion_price")
     private BigDecimal excursion_price;
@@ -35,11 +34,11 @@ public class excursion {
 
     @ManyToOne
     @JoinColumn(name = "vacation_id", nullable = false)
-    private vacation vacation;
+    private Vacation vacation;
 
     @ManyToMany
     @JoinTable(name = "excursion_cartitem",joinColumns = @JoinColumn(name = "excursion_id"), inverseJoinColumns = @JoinColumn(name = "cart_item_id"))
-    private Set<cartItem> cartitems = new HashSet<>();
+    private Set<CartItem> cartitems = new HashSet<>();
 
 
 }

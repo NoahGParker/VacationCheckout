@@ -11,25 +11,25 @@ import java.util.*;
 @Table(name="carts")
 @Getter
 @Setter
-public class cart {
+public class Cart {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "cart_Id")
     private Long id;
   @Column(name = "order_tracking_number")
-    private String TrackingNumber;
+    private String orderTrackingNumber;
   @Column(name = "package_price")
     private BigDecimal package_Price;
   @Column(name = "party_size")
     private int party_Size;
   @Enumerated(EnumType.STRING)
   @Column(name = "status")
-    private statusType status;
+    private StatusType status;
   @ManyToOne
   @JoinColumn(name ="customer_id")
-    private customer customer;
+    private Customer customer;
  @OneToMany(mappedBy = "cart")
-    private Set<cartItem> cartitem = new HashSet<>();
+    private Set<CartItem> cartitem = new HashSet<>();
  @Column(name = "create_date")
  @CreationTimestamp
     private Date create_Date;
@@ -37,7 +37,7 @@ public class cart {
  @UpdateTimestamp
     private Date last_Update;
 
-    public void add(cartItem item){
+    public void add(CartItem item){
         if(item != null){
             if (cartitem == null){
                 cartitem = new HashSet<>();

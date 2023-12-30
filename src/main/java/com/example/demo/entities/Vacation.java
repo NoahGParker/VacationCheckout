@@ -13,7 +13,7 @@ import java.util.Set;
 @Table(name="vacations")
 @Getter
 @Setter
-public class vacation {
+public class Vacation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="vacation_id")
@@ -34,6 +34,6 @@ public class vacation {
     @UpdateTimestamp
     private Date last_Update;
     @OneToMany(mappedBy = "vacation")
-    private Set<excursion> excursions;
+    private Set<Excursion> excursions;
 
 }

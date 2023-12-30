@@ -1,5 +1,5 @@
 package com.example.demo.entities;
 
-public enum statusType {
+public enum StatusType {
     pending,ordered,cancelled
 }

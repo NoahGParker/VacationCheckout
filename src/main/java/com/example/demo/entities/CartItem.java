@@ -10,7 +10,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 @Table(name="cart_items")
 @Getter
 @Setter
-public class cartItem {
+public class CartItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cart_item_id")
@@ -18,14 +18,14 @@ public class cartItem {
 
     @ManyToOne
     @JoinColumn(name = "vacation_id")
-    private vacation vacation;
+    private Vacation vacation;
 
     @ManyToMany(mappedBy = "cartitems")
-    private Set<excursion> excursions = new HashSet<>();
+    private Set<Excursion> Excursions = new HashSet<>();
 
     @ManyToOne
     @JoinColumn(name = "cart_id")
-    private cart cart;
+    private Cart cart;
 
     @Column(name = "create_date")
     @CreationTimestamp
@@ -35,8 +35,8 @@ public class cartItem {
     @UpdateTimestamp
     private Date last_Update;
 
-    public void addExcursion(excursion excursion){
-        this.excursions.add(excursion);
+    public void addExcursion(Excursion excursion){
+        this.Excursions.add(excursion);
         excursion.getCartitems().add(this);
     }
 

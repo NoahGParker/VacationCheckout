@@ -3,7 +3,6 @@ package com.example.demo.entities;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import java.util.*;
@@ -13,7 +12,7 @@ import java.util.*;
 @Table(name="customers")
 @Getter
 @Setter
-public class customer {
+public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="customer_id")
@@ -37,22 +36,22 @@ public class customer {
 
     @ManyToOne
     @JoinColumn(name = "division_id")
-    private division division;
+    private Division division;
 
     @OneToMany(mappedBy = "customer")
-    private Set<cart> carts = new HashSet<>();
+    private Set<Cart> Carts = new HashSet<>();
 
-public void add(cart cart){
+public void add(Cart cart){
     if (cart != null){
-        if(carts == null){
-            carts = new HashSet<>();
+        if(Carts == null){
+            Carts = new HashSet<>();
 
         }
-        carts.add(cart);
+        Carts.add(cart);
         cart.setCustomer(this);
     }
 }
-public customer(String firstName,String lastName,String address,String postal_code,String phone){
+public Customer(String firstName, String lastName, String address, String postal_code, String phone){
     this.firstName = firstName;
     this.lastName = lastName;
     this.address = address;
@@ -60,7 +59,7 @@ public customer(String firstName,String lastName,String address,String postal_co
     this.phone = phone;
 
 }
-public  customer(){
+public  Customer(){
 
 }
 }

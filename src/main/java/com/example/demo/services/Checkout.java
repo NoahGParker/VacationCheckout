@@ -2,8 +2,8 @@ package com.example.demo.services;
 
 import org.springframework.transaction.annotation.Transactional;
 
-public interface checkoutCustomer {
+public interface Checkout {
 
     @Transactional
-    purchaseTrackingOrder placeCustomerOrder(purchaseCustomer purchase);
+    PurchaseResponse placeOrder(Purchase purchase);
 }

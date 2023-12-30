@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class checkoutImplementation implements checkoutCustomer{
+public class checkoutImplementation implements Checkout {
     private final customerRepository customerRepository;
     private final  cartRepository cartRepository;
     private final  vacationRepository vacationRepository;
@@ -22,34 +22,34 @@ public class checkoutImplementation implements checkoutCustomer{
     }
     @Override
     @Transactional
-    public purchaseTrackingOrder placeCustomerOrder(purchaseCustomer purchase){
-        String TrackingNumber = generateTrackingNumber();
-        purchase.getCart().setTrackingNumber(TrackingNumber);
-        purchase.getCart().setStatus(statusType.ordered);
+    public PurchaseResponse placeOrder(Purchase purchase){
+        String orderTrackingNumber = generateTrackingNumber();
+        purchase.getCart().setOrderTrackingNumber(generateTrackingNumber());
+        purchase.getCart().setStatus(StatusType.ordered);
 
-        vacation vacation = purchase.getCartItems()
+        Vacation vacation = purchase.getCartItems()
                 .stream()
                 .findFirst()
-                .map(cartItem::getVacation)
+                .map(CartItem::getVacation)
                 .orElseThrow(() -> new IllegalArgumentException("Vacation cannont be empty."));
         vacationRepository.save(vacation);
-        cart savedCart = cartRepository.save(purchase.getCart());
+        Cart savedCart = cartRepository.save(purchase.getCart());
 
-        Optional.ofNullable(vacation.getExcursions()).ifPresent(excursions -> excursions.forEach(excursion -> {
-            if (excursion.getVacation()==null) {
-                excursion.setVacation(vacation);
+        Optional.ofNullable(vacation.getExcursions()).ifPresent(excursions -> excursions.forEach(Excursion -> {
+            if (Excursion.getVacation()==null) {
+                Excursion.setVacation(vacation);
             }
-            excursionRepository.save(excursion);
+            excursionRepository.save(Excursion);
         }));
         purchase.getCartItems().forEach(cartItem -> {
          cartItem.setCart(savedCart);
          cartItemRepository.save(cartItem);
         });
         purchase.getCartItems().forEach(cartItem ->{
-            Set<excursion> excursionsForcartItem = cartItem.getExcursions();
+            Set<Excursion> excursionsForcartItem = cartItem.getExcursions();
             if(excursionsForcartItem != null){
-                excursionsForcartItem.forEach(excursion ->{
-                    excursion persistedExcursion = excursionRepository.findById(excursion.getId()).orElse(null);
+                excursionsForcartItem.forEach(Excursion ->{
+                    Excursion persistedExcursion = excursionRepository.findById(Excursion.getId()).orElse(null);
                     if (persistedExcursion != null){
                         persistedExcursion.getCartitems().add(cartItem);
                         excursionRepository.save(persistedExcursion);
@@ -60,12 +60,14 @@ public class checkoutImplementation implements checkoutCustomer{
             }
 
         });
-        customer customer = purchase.getCustomer();
+        Customer customer = purchase.getCustomer();
         customerRepository.save(customer);
-        return new purchaseTrackingOrder(TrackingNumber);
+        return new PurchaseResponse(orderTrackingNumber);
 
         }
         private String generateTrackingNumber(){
         return UUID.randomUUID().toString();
     }
+
+
 }

@@ -15,35 +15,35 @@ public class BootStrapData implements CommandLineRunner {
 
     @Override
     public void run(String... agrs) throws Exception{
-        customer caitin = new customer();
+        Customer caitin = new Customer();
         caitin.setFirstName("Caitlin");
         caitin.setLastName("Ivey");
         caitin.setAddress("3131 Mountain Creek Rd.");
         caitin.setPostal_code("37122");
         caitin.setPhone("6158901454");
 
-        customer erika = new customer();
+        Customer erika = new Customer();
         erika.setFirstName("Erika");
         erika.setLastName("Smith");
         erika.setAddress("31 Karen Dr.");
         erika.setPostal_code("37123");
         erika.setPhone("7623451234");
 
-        customer sarin = new customer();
+        Customer sarin = new Customer();
         sarin.setFirstName("Sarin");
         sarin.setLastName("Hill");
         sarin.setAddress("545 Loose Lane.");
         sarin.setPostal_code("53122");
         sarin.setPhone("6155431234");
 
-        customer bobby = new customer();
+        Customer bobby = new Customer();
         bobby.setFirstName("Bobby");
         bobby.setLastName("Graham");
         bobby.setAddress("119 Winding Rd.");
         bobby.setPostal_code("37321");
         bobby.setPhone("6159087423");
 
-        customer john = new customer();
+        Customer john = new Customer();
         john.setFirstName("John");
         john.setLastName("Parker");
         john.setAddress("786 Lookout Mountain");
