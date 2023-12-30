@@ -2,9 +2,7 @@ package com.example.demo.entities;
 import java.util.*;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -12,25 +10,24 @@ import org.hibernate.annotations.UpdateTimestamp;
 @Table(name="cart_items")
 @Getter
 @Setter
-@ToString
 public class cartItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "cart_Item_ID")
+    @Column(name = "cart_item_id")
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "vacation_ID")
+    @JoinColumn(name = "vacation_id")
     private vacation vacation;
 
-    @ManyToMany(mappedBy = "cartItems")
+    @ManyToMany(mappedBy = "cartitems")
     private Set<excursion> excursions = new HashSet<>();
 
     @ManyToOne
-    @JoinColumn(name = "cart_Id")
+    @JoinColumn(name = "cart_id")
     private cart cart;
 
-    @Column(name = "create_Date")
+    @Column(name = "create_date")
     @CreationTimestamp
     private Date create_Date;
 
@@ -38,9 +35,9 @@ public class cartItem {
     @UpdateTimestamp
     private Date last_Update;
 
-    public void addExcur(excursion excursion){
+    public void addExcursion(excursion excursion){
         this.excursions.add(excursion);
-        excursion.getCartItems().add(this);
+        excursion.getCartitems().add(this);
     }
 
 }

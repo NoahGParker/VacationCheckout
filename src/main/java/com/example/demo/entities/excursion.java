@@ -1,7 +1,8 @@
 package com.example.demo.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -14,18 +15,18 @@ import java.util.*;
 public class excursion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="excursion_ID")
+    @Column(name="excursion_id")
     private Long id;
 
-    @Column(name = "excursion_Title")
+    @Column(name = "excursion_title")
     private String excursion_Title;
 
-    @Column(name = "excursion_Price")
+    @Column(name = "excursion_price")
     private BigDecimal excursion_price;
 
-    @Column(name = "image_Url")
-    private String image_Url;
-    @Column(name = "create_Date")
+    @Column(name = "image_url")
+    private String image_URL;
+    @Column(name = "create_date")
     @CreationTimestamp
     private Date create_Date;
     @Column(name = "last_update")
@@ -33,12 +34,12 @@ public class excursion {
     private Date last_Update;
 
     @ManyToOne
-    @JoinColumn(name = "vacation_ID", nullable = false)
+    @JoinColumn(name = "vacation_id", nullable = false)
     private vacation vacation;
 
     @ManyToMany
-    @JoinTable(name = "excursion_cartitem",joinColumns = @JoinColumn(name = "excursion_ID"), inverseJoinColumns = @JoinColumn(name = "cart_Item_ID"))
-    private Set<cartItem> cartItems = new HashSet<>();
+    @JoinTable(name = "excursion_cartitem",joinColumns = @JoinColumn(name = "excursion_id"), inverseJoinColumns = @JoinColumn(name = "cart_item_id"))
+    private Set<cartItem> cartitems = new HashSet<>();
 
 
 }

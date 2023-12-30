@@ -1,9 +1,7 @@
 package com.example.demo.entities;
 import java.util.*;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -11,18 +9,17 @@ import org.hibernate.annotations.UpdateTimestamp;
 @Table(name="countries")
 @Getter
 @Setter
-@ToString
 public class country {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="country_ID")
+    @Column(name="country_id")
         private Long id;
 
-    @Column(name = "country")
+    @Column(name = "Country")
         private String country_Name;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "country")
+    @OneToMany(mappedBy = "country" , cascade = {CascadeType.ALL})
         private Set<division> divisions;
-    @Column(name = "create_Date")
+    @Column(name = "create_date")
     @CreationTimestamp
     private Date create_Date;
 

@@ -1,9 +1,7 @@
 package com.example.demo.entities;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -13,39 +11,38 @@ import java.util.*;
 @Table(name="carts")
 @Getter
 @Setter
-@ToString
 public class cart {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "Cart_Id")
+  @Column(name = "cart_Id")
     private Long id;
-  @Column(name = "Order_Tracking_Number")
+  @Column(name = "order_tracking_number")
     private String TrackingNumber;
-  @Column(name = "Pack_Price")
+  @Column(name = "package_price")
     private BigDecimal package_Price;
-  @Column(name = "Party_Size")
+  @Column(name = "party_size")
     private int party_Size;
   @Enumerated(EnumType.STRING)
   @Column(name = "status")
     private statusType status;
   @ManyToOne
-  @JoinColumn(name ="customer_ID")
+  @JoinColumn(name ="customer_id")
     private customer customer;
  @OneToMany(mappedBy = "cart")
-    private Set<cartItem> cartItems = new HashSet<>();
- @Column(name = "create_Date")
+    private Set<cartItem> cartitem = new HashSet<>();
+ @Column(name = "create_date")
  @CreationTimestamp
     private Date create_Date;
- @Column(name = "last_Update")
+ @Column(name = "last_update")
  @UpdateTimestamp
     private Date last_Update;
 
     public void add(cartItem item){
         if(item != null){
-            if (cartItems == null){
-                cartItems = new HashSet<>();
+            if (cartitem == null){
+                cartitem = new HashSet<>();
             }
-            cartItems.add(item);
+            cartitem.add(item);
             item.setCart(this);
         }
 

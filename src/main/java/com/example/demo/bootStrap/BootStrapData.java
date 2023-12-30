@@ -50,7 +50,7 @@ public class BootStrapData implements CommandLineRunner {
         john.setPostal_code("37133");
         john.setPhone("6155431234");
 
-        if(customerRepository.count() == 0) {
+        if( customerRepository.count() == 0 || customerRepository.count() == 1)  {
         customerRepository.save(caitin);
             customerRepository.save(erika);
             customerRepository.save(bobby);

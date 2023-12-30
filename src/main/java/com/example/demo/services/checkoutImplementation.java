@@ -51,7 +51,7 @@ public class checkoutImplementation implements checkoutCustomer{
                 excursionsForcartItem.forEach(excursion ->{
                     excursion persistedExcursion = excursionRepository.findById(excursion.getId()).orElse(null);
                     if (persistedExcursion != null){
-                        persistedExcursion.getCartItems().add(cartItem);
+                        persistedExcursion.getCartitems().add(cartItem);
                         excursionRepository.save(persistedExcursion);
                     }
 

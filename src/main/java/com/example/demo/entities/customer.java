@@ -13,13 +13,12 @@ import java.util.*;
 @Table(name="customers")
 @Getter
 @Setter
-@ToString
 public class customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="customer_ID")
+    @Column(name="customer_id")
     private Long id;
-    @Column(name="customer_First_Name", nullable = false)
+    @Column(name="customer_first_name", nullable = false)
     private String firstName;
     @Column(name="customer_Last_Name", nullable = false)
     private String lastName;
@@ -29,7 +28,7 @@ public class customer {
     private String postal_code;
     @Column(name="phone", nullable = false)
     private String phone;
-    @Column(name = "create_Date")
+    @Column(name = "create_date")
     @CreationTimestamp
     private Date create_Date;
     @Column(name = "last_update")
@@ -37,7 +36,7 @@ public class customer {
     private Date last_Update;
 
     @ManyToOne
-    @JoinColumn(name = "divsion_ID")
+    @JoinColumn(name = "division_id")
     private division division;
 
     @OneToMany(mappedBy = "customer")

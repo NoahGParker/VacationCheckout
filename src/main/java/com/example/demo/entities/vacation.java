@@ -1,9 +1,7 @@
 package com.example.demo.entities;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -15,22 +13,21 @@ import java.util.Set;
 @Table(name="vacations")
 @Getter
 @Setter
-@ToString
 public class vacation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="vacation_ID")
+    @Column(name="vacation_id")
     private Long id;
 
-    @Column(name = "vacation_Title")
+    @Column(name = "vacation_title")
     private String vacation_Title;
     @Column(name = "description")
     private String description;
-    @Column(name = "travel_Fare_Price")
+    @Column(name = "travel_fare_price")
     private BigDecimal travel_price;
-    @Column(name = "image_Url")
-    private String image_Url;
-    @Column(name = "create_Date")
+    @Column(name = "image_url")
+    private String image_URL;
+    @Column(name = "create_date")
     @CreationTimestamp
     private Date create_Date;
     @Column(name = "last_update")
